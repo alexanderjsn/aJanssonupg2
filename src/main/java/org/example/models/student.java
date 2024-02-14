@@ -11,6 +11,11 @@ public class student {
     private int student_id;
 
     public student(int id, String fname, String lname, String city, String hobby) {
+        this.student_id = id;
+        this.Fname = fname;
+        this.Lname = lname;
+        this.city = city;
+        this.hobby = hobby;
     }
 
     public int getStudent_id() {

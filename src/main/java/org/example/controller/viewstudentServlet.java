@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/students")
+@WebServlet("/student")
 
 public class viewstudentServlet extends HttpServlet {
 
@@ -22,17 +22,13 @@ public class viewstudentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // skapar en lista som fylld med data från studentDAO listan
-        List<student> students = null;
-        try {
-            students = studentDAO.getStudents();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        List<student> students = studentDAO.getStudents();
+
 
         // request har value av  listan ( skicka denna till - > )
         request.setAttribute("students",students);
         // - > JSP
-        RequestDispatcher dispatcher = request.getRequestDispatcher("students.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("student.jsp");
         dispatcher.forward(request,response);
     }
 }

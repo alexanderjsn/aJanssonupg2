@@ -1,9 +1,13 @@
 package org.example.models;
 
-public class course {
+public class Course {
     private int courseId;
 
-    public course(int cId, String name, int yhp, String description) {
+    public Course(int courseId, String name, int yhp, String description) {
+        this.courseId = courseId;
+        this.name = name;
+        this.yhp = yhp;
+        this.description = description;
     }
 
     public int getCourseId() {

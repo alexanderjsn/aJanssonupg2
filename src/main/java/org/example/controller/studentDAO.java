@@ -29,16 +29,16 @@ public class studentDAO {
 
 
     //tar in java beans student klass
-    public List<student> getStudents() throws SQLException {
+    public List<student> getStudents()  {
 
         // lista för student data som kan sättas in överallt i kod
         List<student> students = new ArrayList<>();
         // hämtar connection instans för att ansluta
         try (Connection connection = DBconnector.getConnection();
              // inj säkert statement
-        PreparedStatement pstmt = connection.prepareStatement(GET_STUDENTS);
-            // hämtar resultat av query
-        ResultSet rs = pstmt.executeQuery()){
+             PreparedStatement pstmt = connection.prepareStatement(GET_STUDENTS);
+             // hämtar resultat av query
+             ResultSet rs = pstmt.executeQuery()){
 
             // hämtar data
             while(rs.next()){
@@ -49,6 +49,8 @@ public class studentDAO {
                 String hobby = rs.getString("hobby");
                 students.add(new student(id,fname,lname,city,hobby));
             }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return students;
     }

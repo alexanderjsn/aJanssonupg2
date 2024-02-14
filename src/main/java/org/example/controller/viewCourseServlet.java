@@ -6,13 +6,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.example.models.course;
+import org.example.models.Course;
+import org.example.models.student;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/courses")
+@WebServlet("/course")
 public class viewCourseServlet extends HttpServlet {
 
 
@@ -21,15 +22,14 @@ public class viewCourseServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<course> courses = null;
-        try {
-            courses = courseDAO.getCourse();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        // skapar en lista som fylld med data från studentDAO listan
+        List<Course> courseList = courseDAO.getCourse();
 
-        request.setAttribute("courses",courses);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("courses.jsp");
+
+        // request har value av  listan ( skicka denna till - > )
+        request.setAttribute("courseList",courseList);
+        // - > JSP
+        RequestDispatcher dispatcher = request.getRequestDispatcher("course.jsp");
         dispatcher.forward(request,response);
     }
 }
