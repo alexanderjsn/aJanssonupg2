@@ -33,19 +33,18 @@
     <th>Hobbies</th>
   </tr>
 
-  <% List<student> students = (List<student>) request.getAttribute("students");
-  for (student student : students) { %>
-
-
+  <% List<student> foundStudents = (List<student>) request.getAttribute("searchedStudents");
+  for (student object : foundStudents) { %>
   <tr>
-            <td><%= student.getFname() %></td>
-            <td><%= student.getLname() %></td>
-            <td><%= student.getCity() %></td>
-            <td><%= student.getHobby() %></td>
+      <td><%= object.getFname() %></td>
+      <td><%= object.getLname() %></td>
+      <td><%= object.getCity() %></td>
+      <td><%= object.getHobby() %></td>
   </tr>
   <% } %>
+
   <h2>Search by firstname or surname</h2>
-  <form action="student" method="post">
+  <form action="viewstudentServlet" method="post">
     <label for="searchFName">Förnamn:</label>
     <input type="text" id="searchFName" name="searchFName">
     <br>

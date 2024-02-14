@@ -10,10 +10,10 @@ public class student {
     private String hobby;
     private int student_id;
 
-    public student(int id, String fname, String lname, String city, String hobby) {
+    public student(int id, String Fname, String Lname, String city, String hobby) {
         this.student_id = id;
-        this.Fname = fname;
-        this.Lname = lname;
+        this.Fname = Fname;
+        this.Lname = Lname;
         this.city = city;
         this.hobby = hobby;
     }
@@ -31,7 +31,7 @@ public class student {
     }
 
     public void setFname(String fname) {
-        Fname = fname;
+        Fname = Fname;
     }
 
     public String getLname() {
@@ -39,7 +39,7 @@ public class student {
     }
 
     public void setLname(String lname) {
-        Lname = lname;
+        Lname = Lname;
     }
 
     public String getCity() {

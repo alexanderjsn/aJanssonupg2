@@ -11,9 +11,13 @@ public class studentDAO {
 
     // sql kommands
 
-
+    public int number = 1;
     // hämta data
     private static final String GET_STUDENTS = "SELECT * FROM students;";
+
+
+    private static final String SEARCH_STUDENTS = "SELECT * FROM students WHERE Fname LIKE ? OR Lname LIKE ?";
+
 
     public studentDAO(int id, String fname, String lname, String city, String hobby) {
     }
@@ -26,7 +30,30 @@ public class studentDAO {
 
     // ta bort data
 
+    public List<student> searchStudent(String searchFname, String searchLname)  {
+           List<student> searchStudents = new ArrayList<>();
 
+        try (Connection connection = DBconnector.getConnection();
+
+             PreparedStatement pstmt = connection.prepareStatement(SEARCH_STUDENTS)) {
+             pstmt.setString(1,"%" + searchFname + "%");
+             pstmt.setString(2,"%" + searchLname + "%");
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                int id = rs.getInt("student_id");
+                String Fname = rs.getString("Fname");
+                String Lname = rs.getString("Lname");
+                String city = rs.getString("city");
+                String hobby = rs.getString("hobby");
+                searchStudents.add(new student(id,Fname,Lname,city,hobby));
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return searchStudents;
+    }
 
     //tar in java beans student klass
     public List<student> getStudents()  {

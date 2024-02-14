@@ -10,6 +10,7 @@ import org.example.models.student;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/student")
@@ -30,5 +31,15 @@ public class viewstudentServlet extends HttpServlet {
         // - > JSP
         RequestDispatcher dispatcher = request.getRequestDispatcher("student.jsp");
         dispatcher.forward(request,response);
+    }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String searchFname = request.getParameter("searchFName");
+        String searchLname = request.getParameter("searchLName");
+        studentDAO studentDAO = new studentDAO();
+        List<student> searchedStudents = studentDAO.searchStudent(searchFname, searchLname);
+
+        request.setAttribute("searchedStudents",searchedStudents);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("foundStudents.jsp");
+        dispatcher.forward(request, response);
     }
 }
