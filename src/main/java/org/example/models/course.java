@@ -3,6 +3,9 @@ package org.example.models;
 public class course {
     private int courseId;
 
+    public course(int cId, String name, int yhp, String description) {
+    }
+
     public int getCourseId() {
         return courseId;
     }

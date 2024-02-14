@@ -5,6 +5,9 @@ package org.example.models;
 public class student {
     private int student_id;
 
+    public student(int id, String fname, String lname, String city, String hobby) {
+    }
+
     public int getStudent_id() {
         return student_id;
     }
