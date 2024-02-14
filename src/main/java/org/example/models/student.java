@@ -3,6 +3,11 @@ package org.example.models;
 
 // kapslar in motsvarade databas namn
 public class student {
+
+    private String Fname;
+    private String Lname;
+    private String city;
+    private String hobby;
     private int student_id;
 
     public student(int id, String fname, String lname, String city, String hobby) {
@@ -48,8 +53,4 @@ public class student {
         this.hobby = hobby;
     }
 
-    private String Fname;
-    private String Lname;
-    private String city;
-    private String hobby;
 }

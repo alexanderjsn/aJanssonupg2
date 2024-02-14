@@ -15,6 +15,13 @@ public class studentDAO {
     // hämta data
     private static final String GET_STUDENTS = "SELECT * FROM students;";
 
+    public studentDAO(int id, String fname, String lname, String city, String hobby) {
+    }
+
+    public studentDAO() {
+
+    }
+
     // skicka data
 
     // ta bort data
