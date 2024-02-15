@@ -26,7 +26,7 @@
     </nav>
 </header>
 <h2>Kurser</h2>
-<table border="1">
+<table border="1" id="courses">
     <tr>
         <th>Kurs-ID</th>
         <th>Namn</th>
@@ -47,7 +47,7 @@
 
 <h2>Elever</h2>
 
-<table border="1">
+<table border="1" id="students">
     <tr>
         <th>Id</th>
         <th>First Names</th>
@@ -67,13 +67,26 @@
       <% } %>
       </table>
 
+          <form action="student" method="post">
+            <label for="addStudentID">Förnamn:</label>
+            <input type="text" id="searchFName" name="searchFName">
+            <br>
+             <label for="addCourseID">Efternamn:</label>
+             <input type="text" id="searchLName" name="searchLName">
+          </form>
 
       <script>
       document.querySelectorAll("td").forEach(cell => {
           cell.addEventListener("click", function() {
+              var tableId = this.closest('table').id;
               cell.style.backgroundColor = 'green';
               var value = this.innerText;
-              document.getElementById("test").innerText = value;
+              if (tableId === 'students'){
+              document.getElementById("searchFName").value = value;
+              }
+              else if (tableId === "courses"){
+              document.getElementById("searchLName").value = value;
+              }
           });
       });
       </script>
