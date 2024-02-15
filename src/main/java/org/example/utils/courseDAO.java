@@ -16,6 +16,7 @@ public class courseDAO {
     private static final String GET_COURSES = "SELECT * FROM courses;";
 
     // skicka data
+    private static final String ADD_COURSES = "INSERT INTO courses (name, YHP, description) VALUES (?, ?, ?);";
 
     // ta bort data
 
@@ -37,14 +38,26 @@ public class courseDAO {
             while(rs.next()){
                 int courseId = rs.getInt("course_id");
                 String name = rs.getString("name");
-                int YHP = rs.getInt("YHP");
+                int yhp = rs.getInt("YHP");
                 String description = rs.getString("description");
-                courses.add(new Course(courseId,name,YHP,description));
+                courses.add(new Course(courseId,name,yhp,description));
             }
         }
         catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return courses;
+    }
+
+    public void addCourse(String name, int yhp, String description) {
+        try (Connection connection = DBconnector.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(ADD_COURSES)) {
+            pstmt.setString(1, "%" + name + "%");
+            pstmt.setString(2, String.valueOf(yhp));
+            pstmt.setString(3, "%" + description + "%");
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

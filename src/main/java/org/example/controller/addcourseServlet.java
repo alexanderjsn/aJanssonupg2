@@ -7,22 +7,21 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.models.student;
-import org.example.utils.studentDAO;
+import org.example.utils.courseDAO;
 
 import java.io.IOException;
 import java.util.List;
-@WebServlet("/addStudent")
+@WebServlet("/addCourse")
 
-public class addstudentServlet extends HttpServlet {
-
+public class addcourseServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String Fname = request.getParameter("Fname");
-        String Lname = request.getParameter("Lname");
-        String hobby = request.getParameter("city");
-        String city = request.getParameter("hobby");
-        studentDAO studentDAO = new studentDAO();
-        studentDAO.addStudent(Fname, Lname, city, hobby);
-        response.sendRedirect("student");
+        String name = request.getParameter("name");
+        int yhp = Integer.parseInt(request.getParameter("yhp"));
+        String description = request.getParameter("description");
+
+        courseDAO courseDAO = new courseDAO();
+        courseDAO.addCourse(name,yhp,description);
+        response.sendRedirect("course");
 
     }
 }
