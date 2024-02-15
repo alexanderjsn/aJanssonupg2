@@ -5,6 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="/script/script.js"></script>
     <title>Title</title>
 </head>
 <body>
@@ -49,7 +50,7 @@
 <table border="1">
     <tr>
         <th>Id</th>
-        <th>First Name</th>
+        <th>First Names</th>
         <th>Last Name</th>
         <th>City</th>
         <th>Hobby</th>
@@ -64,5 +65,18 @@
                 <td><%= student.getHobby() %></td>
       </tr>
       <% } %>
+      </table>
+
+
+      <script>
+      document.querySelectorAll("td").forEach(cell => {
+          cell.addEventListener("click", function() {
+              cell.style.backgroundColor = 'green';
+              var value = this.innerText;
+              document.getElementById("test").innerText = value;
+          });
+      });
+      </script>
+      <p id="test">wo!</p>
 </body>
 </html>
