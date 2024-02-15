@@ -37,6 +37,7 @@
   for (student student : students) { %>
   <tr>
             <td><%= student.getFname() %></td>
+            <td><%= student.getFname() %></td>
             <td><%= student.getLname() %></td>
             <td><%= student.getCity() %></td>
             <td><%= student.getHobby() %></td>

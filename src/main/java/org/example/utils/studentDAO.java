@@ -81,13 +81,13 @@ public class studentDAO {
 
             // hämtar data
             while(rs.next()){
-                int id = rs.getInt("student_id");
+                int student_id = rs.getInt("student_id");
                 String fname = rs.getString("Fname");
                 String lname = rs.getString("Lname");
                 String city = rs.getString("city");
                 String hobby = rs.getString("hobby");
 
-                students.add(new student(id,fname,lname,city,hobby));
+                students.add(new student(student_id,fname,lname,city,hobby));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
