@@ -36,7 +36,7 @@
   <% List<student> students = (List<student>) request.getAttribute("students");
   for (student student : students) { %>
   <tr>
-            <td><%= student.getFname() %></td>
+            <td><%= student.getStudent_id() %></td>
             <td><%= student.getFname() %></td>
             <td><%= student.getLname() %></td>
             <td><%= student.getCity() %></td>

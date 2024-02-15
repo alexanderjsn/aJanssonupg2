@@ -1,6 +1,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="org.example.models.Course" %>
 <%@ page import="org.example.models.student" %>
+<%@ page import="org.example.models.association" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -58,13 +60,7 @@
         <th>Hobby</th>
     </tr>
 
-    <p id="test">test</p>
 
-
- <% List<student> autoId = (List<student>) request.getAttribute("autoId");
-    for(student autoStudents : autoId) {
-        int nytest = autoStudents.getStudent_id();
- %>
 
     <% List<student> students = (List<student>) request.getAttribute("students");
       for (student student : students) { %>
@@ -79,8 +75,25 @@
       </table>
 
 
+      <table border="1" id="association">
+          <tr>
+              <th>Association ID</th>
+              <th>Student ID</th>
+              <th>Kurs ID</th>
 
-          <form action="attendanceServlet" method="post">
+
+          </tr>
+          <% List<association> associationList = (List<association>) request.getAttribute("associationList");
+             for (association association : associationList) { %>
+
+              <tr>
+                   <td><%= association.getId() %></td>
+                    <td><%= association.getStudentId() %></td>
+                   <td><%= association.getCourseId() %></td>
+              </tr>
+              <% } %>
+      </table>
+          <form action="attendance" method="post">
             <label for="addStudentID">Student:</label>
             <input type="number" id="student_id" name="student_id">
             <br>
@@ -89,8 +102,6 @@
               <input type="submit" value="Lägg till">
                 </form>
       <script>
-      document.getElementById("test").innerHTML = "<%=nytest%>";
-
       document.querySelectorAll("td").forEach(cell => {
           cell.addEventListener("click", function() {
               var tableId = this.closest('table').id;

@@ -30,8 +30,10 @@ public class courseDAO {
             pstmt.setInt(1, student_id);
             pstmt.setInt(2, course_id);
             pstmt.executeUpdate();
+        } catch (SQLIntegrityConstraintViolationException e) {
+            throw new RuntimeException("Det går inte att lägga till. Studenten är redan registrerad på kursen.");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Ett databasfel inträffade: " + e.getMessage());
         }
     }
 
@@ -65,9 +67,9 @@ public class courseDAO {
     public void addCourse(String name, int yhp, String description) {
         try (Connection connection = DBconnector.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(ADD_COURSES)) {
-            pstmt.setString(1, "%" + name + "%");
+            pstmt.setString(1, name);
             pstmt.setString(2, String.valueOf(yhp));
-            pstmt.setString(3, "%" + description + "%");
+            pstmt.setString(3, (description));
             pstmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

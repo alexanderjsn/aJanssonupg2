@@ -33,7 +33,6 @@ public class viewCourseServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-
 }
 
 

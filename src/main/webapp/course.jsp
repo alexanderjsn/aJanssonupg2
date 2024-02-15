@@ -44,7 +44,7 @@
 
          <form action="addCourse" method="post">
               Namn: <input type="text" name="name"><br>
-              YHP: <input type="text" name="yhp"><br>
+              YHP: <input type="number" name="yhp"><br>
               beskrivning: <input type="text" name="description"><br>
               <input type="submit" value="Lägg till kurs">
           <input type="submit" value="Lägg till">
