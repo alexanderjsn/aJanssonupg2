@@ -1,4 +1,4 @@
-package org.example.controller;
+package org.example.utils;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

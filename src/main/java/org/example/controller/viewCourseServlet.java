@@ -7,11 +7,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.models.Course;
-import org.example.models.student;
+import org.example.utils.courseDAO;
+import org.example.utils.studentDAO;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/course")
@@ -19,7 +18,7 @@ public class viewCourseServlet extends HttpServlet {
 
 
     // hämtar studentDAO så jag kan hämta listan med studenter
-    private final courseDAO courseDAO = new courseDAO();
+    private final org.example.utils.courseDAO courseDAO = new courseDAO();
 
     studentDAO s = new studentDAO();
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

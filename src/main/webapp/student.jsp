@@ -35,8 +35,6 @@
 
   <% List<student> students = (List<student>) request.getAttribute("students");
   for (student student : students) { %>
-
-
   <tr>
             <td><%= student.getFname() %></td>
             <td><%= student.getLname() %></td>
@@ -54,6 +52,16 @@
      <br>
        <input type="submit" value="Sök">
   </form>
+
+      <form action="addStudent" method="post">
+          Namn: <input type="text" name="Fname"><br>
+          Efternamn: <input type="text" name="Lname"><br>
+          Hobby: <input type="text" name="hobby"><br>
+          Stad: <input type="text" name="city"><br>
+
+          <input type="submit" value="Lägg till student">
+      </form>
+
 </table>
 
 

@@ -1,17 +1,15 @@
-package org.example.controller;
+package org.example.utils;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import org.example.models.student;
-
-import org.example.utils.DBconnector;
 
 
 public class studentDAO {
 
     // sql kommands
 
-    public int number = 1;
+    private static final String ADD_STUDENTS = "INSERT INTO students (Fname, Lname, city, hobby) VALUES (?, ?, ?, ?);";
     // hämta data
     private static final String GET_STUDENTS = "SELECT * FROM students;";
 
@@ -30,7 +28,21 @@ public class studentDAO {
 
     // ta bort data
 
-    public List<student> searchStudent(String searchFname, String searchLname)  {
+    public void addStudent(String Fname, String Lname, String city, String hobby) {
+        try (Connection connection = DBconnector.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(ADD_STUDENTS)) {
+            pstmt.setString(1, "%" + Fname + "%");
+            pstmt.setString(2, "%" + Lname + "%");
+            pstmt.setString(3, "%" + city + "%");
+            pstmt.setString(4, "%" + hobby + "%");
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+        public List<student> searchStudent(String searchFname, String searchLname)  {
            List<student> searchStudents = new ArrayList<>();
 
         try (Connection connection = DBconnector.getConnection();
@@ -74,6 +86,7 @@ public class studentDAO {
                 String lname = rs.getString("Lname");
                 String city = rs.getString("city");
                 String hobby = rs.getString("hobby");
+
                 students.add(new student(id,fname,lname,city,hobby));
             }
         } catch (SQLException e) {
