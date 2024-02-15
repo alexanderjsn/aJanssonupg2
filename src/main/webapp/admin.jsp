@@ -12,6 +12,8 @@
 <header>
     <h1 class="logo">Grit Academy</h1>
     <nav>
+
+
         <ul>
             <li>
                 <a href="index.html">Homrrre</a>
@@ -55,6 +57,15 @@
         <th>City</th>
         <th>Hobby</th>
     </tr>
+
+    <p id="test">test</p>
+
+
+ <% List<student> autoId = (List<student>) request.getAttribute("autoId");
+    for(student autoStudents : autoId) {
+        int nytest = autoStudents.getStudent_id();
+ %>
+
     <% List<student> students = (List<student>) request.getAttribute("students");
       for (student student : students) { %>
       <tr>
@@ -67,15 +78,19 @@
       <% } %>
       </table>
 
-          <form action="student" method="post">
-            <label for="addStudentID">Förnamn:</label>
-            <input type="text" id="searchFName" name="searchFName">
-            <br>
-             <label for="addCourseID">Efternamn:</label>
-             <input type="text" id="searchLName" name="searchLName">
-          </form>
 
+
+          <form action="attendanceServlet" method="post">
+            <label for="addStudentID">Student:</label>
+            <input type="number" id="student_id" name="student_id">
+            <br>
+             <label for="addCourseID">Kurs:</label>
+               <input type="number" id="course_id" name="course_id">
+              <input type="submit" value="Lägg till">
+                </form>
       <script>
+      document.getElementById("test").innerHTML = "<%=nytest%>";
+
       document.querySelectorAll("td").forEach(cell => {
           cell.addEventListener("click", function() {
               var tableId = this.closest('table').id;
@@ -89,7 +104,7 @@
               }
           });
       });
+
       </script>
-      <p id="test">wo!</p>
 </body>
 </html>

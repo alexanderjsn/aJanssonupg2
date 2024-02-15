@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import org.example.models.Course;
 
-import org.example.utils.DBconnector;
+import org.example.models.student;
 
 
 public class courseDAO {
 
     // sql kommands
+
+    private static final String ADD_BOTH = "INSERT INTO association (student_id, course_id) VALUES (?, ?);";
 
 
     // hämta data
@@ -21,6 +23,17 @@ public class courseDAO {
     // ta bort data
 
 
+
+    public void addBoth(int student_id, int course_id) {
+        try (Connection connection = DBconnector.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(ADD_BOTH)) {
+            pstmt.setInt(1, student_id);
+            pstmt.setInt(2, course_id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     //tar in java beans student klass
     public List<Course> getCourse() {

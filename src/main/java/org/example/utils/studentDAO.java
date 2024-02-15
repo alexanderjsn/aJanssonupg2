@@ -16,6 +16,7 @@ public class studentDAO {
 
     private static final String SEARCH_STUDENTS = "SELECT * FROM students WHERE Fname LIKE ? OR Lname LIKE ?";
 
+    private static final String AUTOCORRECT_STUDENTS = "SELECT student_id FROM students WHERE Fname LIKE ? OR Lname LIKE ?";
 
     public studentDAO(int id, String fname, String lname, String city, String hobby) {
     }
@@ -26,6 +27,25 @@ public class studentDAO {
 
     // skicka data
 
+
+    // auto correct data
+
+    public List<student> autoStudent(String Fname,String Lname){
+        List<student> autoStudent = new ArrayList<>();
+        try (Connection connection = DBconnector.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(AUTOCORRECT_STUDENTS)) {
+            pstmt.setString(1, "%" + Fname + "%");
+            pstmt.setString(2, "%" + Lname + "%");
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                int student_id = rs.getInt("student_id");
+                autoStudent.add(new student(student_id));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return autoStudent;
+    }
     // ta bort data
 
     public void addStudent(String Fname, String Lname, String city, String hobby) {

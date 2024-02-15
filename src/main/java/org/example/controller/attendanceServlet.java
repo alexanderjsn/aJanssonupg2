@@ -31,6 +31,14 @@ public class attendanceServlet extends HttpServlet {
     }
 
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int student_id = Integer.parseInt(request.getParameter("student_id"));
+        int course_id = Integer.parseInt(request.getParameter("course_id"));
+        courseDAO.addBoth(student_id, course_id);
+        response.sendRedirect("student");
+
+    }
+
 }
 
 

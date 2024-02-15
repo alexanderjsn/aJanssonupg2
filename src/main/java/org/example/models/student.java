@@ -18,6 +18,10 @@ public class student {
         this.hobby = hobby;
     }
 
+
+    public student(int studentId) {
+    }
+
     public int getStudent_id() {
         return student_id;
     }
